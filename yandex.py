@@ -236,7 +236,7 @@ def messages(message):
 @bot.message_handler(commands=['ban'])
 def ban(message):
     if message.from_user.username in usernames:
-        bot.register_next_step_handler(message, banforgay)
+        bot.register_next_step_handler(message, bann)
 
 
 @bot.message_handler(content_types=["text"])
@@ -285,12 +285,12 @@ def client_add(message):
     users_in('client.json', clients)
 
 
-def banforgay(message):
+def bann(message):
     users = users_out('users.json')
     try:
         users[1].append(str(message.reply_to_message.forward_from.id))
         bot.send_message(message.reply_to_message.forward_from.id, 'Вы были заблокированы!')
-        bot.send_message(sheluha, f'{message.reply_to_message.forward_from.id} был добавлен в список пидорасов')
+        bot.send_message(sheluha, f'{message.reply_to_message.forward_from.id} был добавлен в список !')
     except:
         bot.send_message(message.chat.id,
                          'Что-то пошло не так! Бот продолжил свою работу.',
@@ -423,7 +423,7 @@ def correct(message):
             else:
                 bot.send_message(message.chat.id, "Enter the subject"
                                                   f"{engext}")
-            bot.register_next_step_handler(message, dolbaeb)
+            bot.register_next_step_handler(message, dol)
         elif message.text == '3':
             if users[users[0].index(message.chat.id) + 2]['lng'] == 'rus':
                 bot.send_message(message.chat.id, 'Введите срок выполнения задания\n'
@@ -431,7 +431,7 @@ def correct(message):
             else:
                 bot.send_message(message.chat.id, "Enter the deadline for the task"
                                                   f"{engext}")
-            bot.register_next_step_handler(message, eblan)
+            bot.register_next_step_handler(message, lbe)
         elif message.text == '4':
             if users[users[0].index(message.chat.id) + 2]['lng'] == 'rus':
                 bot.send_message(message.chat.id,
@@ -441,7 +441,7 @@ def correct(message):
                 bot.send_message(message.chat.id,
                                  "Send the task itself"
                                  f"{engext}")
-            bot.register_next_step_handler(message, kon4)
+            bot.register_next_step_handler(message, kon)
         elif message.text == '1':
             if users[users[0].index(message.chat.id) + 2]['lng'] == 'rus':
                 bot.send_message(message.chat.id, 'Введите название вашего университета\n'
@@ -452,7 +452,7 @@ def correct(message):
             bot.register_next_step_handler(message, vegetable)
 
 
-def dolbaeb(message):
+def dol(message):
     if message.text != "/exit":
         data[str(message.chat.id)][2] = message.text
         bot.send_message(message.chat.id, "Вы готовы проверить анкету ещё раз?\n"
@@ -463,7 +463,7 @@ def dolbaeb(message):
         exit(message)
 
 
-def eblan(message):
+def lbe(message):
     if message.text != "/exit":
         data[str(message.chat.id)][3] = message.text
         bot.send_message(message.chat.id, "Вы готовы проверить анкету ещё раз?\n"
@@ -474,7 +474,7 @@ def eblan(message):
         exit(message)
 
 
-def kon4(message):
+def kon(message):
     if message.text != "/exit":
         data[str(message.chat.id)][4] = message.message_id
         bot.send_message(message.chat.id, "Вы готовы проверить анкету ещё раз?\n"
