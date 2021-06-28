@@ -51,7 +51,7 @@ def welcome_start(message):
                              text=" Привет/Hi\n Выберите язык бота/Choose the language of the bot:",
                              reply_markup=keyboard)
             users_in('users.json', users)
-        else:  # надо сделать хуйню с привязкой юзера к языку, а здесь дать возможность поменять, чтобы постоянно не дрочило его этой хуйней2
+        else:  
             if 'rus' in users[users[0].index(message.chat.id) + 2].values():
                 keyboard = types.InlineKeyboardMarkup()
                 key_eng = types.InlineKeyboardButton(text='YES',
@@ -62,7 +62,7 @@ def welcome_start(message):
                 bot.send_message(message.from_user.id,
                                  text="Вы хотите поменять язык бота на английский?",
                                  reply_markup=keyboard)
-            else:  # я ебучий гений)
+            else:
                 keyboard = types.InlineKeyboardMarkup()
                 key_eng = types.InlineKeyboardButton(text='YES',
                                                      callback_data='rus')
